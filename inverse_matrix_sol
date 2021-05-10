@@ -1,0 +1,36 @@
+def inverse_matrix(matrix):
+
+    
+    inverse = []
+    
+    # Check if not square
+    if len(matrix) != len(matrix[0]):
+        raise ValueError('The matrix must be square')
+    
+    # Check if matrix is larger than 2x2.
+    if len(matrix) > 2:
+        raise NotImplementedError('this functionality is not implemented')
+    
+    # Check if matrix is 1x1 or 2x2.
+    if len(matrix) == 1:
+        inverse.append([1 / matrix[0][0]])
+    elif len(matrix) == 2:
+        # If the matrix is 2x2, check that the matrix is invertible
+        if matrix[0][0] * matrix[1][1] == matrix[0][1] * matrix[1][0]:
+            raise ValueError('The matrix is not invertible.')
+        else:
+            # Calculate the inverse of the square 1x1 or 2x2 matrix.
+            a = matrix[0][0]
+            b = matrix[0][1]
+            c = matrix[1][0]
+            d = matrix[1][1]
+            
+            factor = 1 / (a * d - b * c)
+            
+            inverse = [[d, -b],[-c, a]]
+            
+            for i in range(len(inverse)):
+                for j in range(len(inverse[0])):
+                    inverse[i][j] = factor * inverse[i][j]
+    
+    return inverse
