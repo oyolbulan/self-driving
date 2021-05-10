@@ -1,0 +1,37 @@
+def inverse_matrix(matrix):
+    
+    inverse = []
+    
+    if len(matrix) != len(matrix[0]):
+        raise ValueError('The matrix must be square')
+    
+    if len(matrix) > 2 or len(matrix[0]) > 2:
+        raise NotImplementedError('Matrix too large')
+
+    if len(matrix) == 1 and len(matrix[0]) == 1:
+        mn = matrix[0][0]
+        cc = 1/mn
+        inverse.append(cc)
+        return inverse
+    
+    elif len(matrix) == 2 and len(matrix[0]) == 2:
+        if (matrix[0][0]*matrix[1][1] - matrix[1][0]*matrix[0][1] == 0): 
+            raise ValueError('Determinant is zero') #check inversibility
+        else:
+            detA = (matrix[0][0]*matrix[1][1] - matrix[1][0]*matrix[0][1])
+            
+            zerozero = matrix[0][0]
+            oneone = matrix[1][1]
+            matrix[0][0] = oneone
+            matrix[1][1] = zerozero
+            matrix[0][1] = -1*matrix[0][1]
+            matrix[1][0] = -1*matrix[1][0]
+            
+            for i in range(len(matrix)):
+                ab = []
+                
+                for j in range(len(matrix[0])):
+                    ab.append((1/detA)*matrix[i][j])
+                    
+                inverse.append(ab)
+            return inverse
