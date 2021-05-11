@@ -1,0 +1,16 @@
+def matrix_addition(matrixA, matrixB):
+
+    # initialize matrix to hold the results
+    matrixSum = []
+    
+    # matrix to hold a row for appending sums of each element
+    row = []
+    
+    # For loop within a for loop to iterate over the matrices
+    for r in range(len(matrixA)):
+        row = [] # reset the list
+        for c in range(len(matrixA[0])):
+            row.append(matrixA[r][c] + matrixB[r][c]) # add the matrices
+        matrixSum.append(row)
+    
+    return matrixSum
