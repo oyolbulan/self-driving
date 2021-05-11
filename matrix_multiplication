@@ -1,0 +1,21 @@
+def multiplication(A, B)
+    
+result = []      
+for r in range(len(A)):
+    row = []
+    for c in range(len(B[0])):
+        row.append(0)
+    result.append(row)
+
+  
+# iterating by row of A
+for i in range(len(A)):
+  
+    # iterating by coloum by B 
+    for j in range(len(B[0])):
+  
+        # iterating by rows of B
+        for k in range(len(B)):
+            result[i][j] += A[i][k] * B[k][j]
+
+print(result)
